@@ -1,0 +1,64 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$("input[name=type]").click(function(){
+		var newthis = $(this);
+		$(".advertise_table").attr("style","display:none;");
+		switch($(this).val()){
+			case '1':
+				$("#advertise_table_1").attr("style","");
+				break;
+			case '2':
+				$("#advertise_table_2").attr("style","");
+				break;
+			default :
+				break;
+		}
+	});
+	$("#dialog_image").click(function(){
+		$.dialog.load({url:"admin/template/dialog/dialog_imageup.php"});
+	});
+});
+</script>
+<div class="user_edit_body">
+	<div class="user_edit_top fw700">
+		添加广告&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" onclick="history.back();">返回</a>
+	</div>
+	<div>
+	<form action="admin.php?mod=advertisedeal" method="post">
+		<table>
+			<tr>
+				<td>类型：</td><td><input type="radio" name="type" value="1" checked="checked" /> 文字广告 &nbsp; <input type="radio" name="type" value="2" /> 图片广告</td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>标题：</td><td><input type="text" name="title" class="input_text" /></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+		</table>
+		<table class="advertise_table" id="advertise_table_1">
+			<tr>
+				<td>代码：</td><td><textarea name="code" rows="10" cols="42"></textarea></td>
+			</tr>
+		</table>
+		<table class="advertise_table" id="advertise_table_2" style="display:none;">
+			<tr>
+				<td>图片：</td><td><input type="text" name="image" id="image" class="input_text" /> <input type="button" id="dialog_image" value="上传" /></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>宽度：</td><td><input type="text" name="width" class="input_text" style="width:50px" /> px (可不填)</td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>高度：</td><td><input type="text" name="height" class="input_text" style="width:50px" /> px (可不填)</td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>链接：</td><td><input type="text" name="url" class="input_text" /> 例如：http://www.hisuncms.com</td>
+			</tr>
+		</table>
+		<input type="hidden" name="pop" value="add" />
+		<input type="submit" class="right" value="添加"/><br /><br />
+	</form>
+	</div>
+</div>

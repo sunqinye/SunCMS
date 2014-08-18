@@ -1,0 +1,70 @@
+<?php if($op == 'default'){ ?>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".deletechannel").click(function(){
+		if(confirm("删除该频道")){
+			var newthis=$(this);
+			$.post("admin.php?mod=channeldeal",{pop:"deletechannel",cid:$(newthis).attr("cid")},function(){
+				location="admin.php?mod=channel";
+			});
+		}
+	});
+	$(".deletecolumn").click(function(){
+		if(confirm("删除该栏目")){
+			var newthis=$(this);
+			$.post("admin.php?mod=channeldeal",{pop:"deletecolumn",cid:$(newthis).attr("cid")},function(){
+				$(newthis).parent("td").parent("tr").remove();
+			});
+		}
+	});
+});
+</script>
+<div class="channel_body center">
+	<div class="channel_top center">
+		<span class="left fw700">频道栏目管理</span>
+		<span class="right">
+			<a href="admin.php?mod=channel&op=addchannel">添加频道</a>&nbsp;
+			<a href="admin.php?mod=channel&op=editchannel&chan=<?php echo $chan; ?>">修改频道</a>&nbsp;
+			<a href="javascript:;" class="deletechannel" cid="<?php echo $chan; ?>">删除频道</a>
+		</span>
+	</div>
+	<div class="channel_channel center">
+		<div class="left">
+			<ul>
+			<?php foreach($channels as $channel){?>
+				<li><a href="admin.php?mod=channel&chan=<?php echo $channel['cid']; ?>" <?php if($chan == $channel['cid']){ ?>class="on"<?php } ?>><?php echo $channel['name']; ?></a></li>
+			<?php } ?>
+			</ul>
+		</div>
+		<div class="right">
+			<a href="admin.php?mod=channel&op=addcolumn&chan=<?php echo $chan; ?>">添加栏目</a>&nbsp;
+		</div>
+	</div>
+	<div class="channel_column center">
+		<div>
+			<table class="center">
+				<tr>
+					<td width="30%"><span class="fw700">栏目名称</span></td>
+					<th width="10%">Id</td>
+					<th width="20%">类型</td>
+					<th width="30%">操作</td>
+					<th width="10%">排序</td>
+				</tr>
+				<?php adminColumnListALL($chan,0); ?>
+			</table>
+		</div>
+	</div>
+</div>
+<?php } ?>
+<?php if($op == 'addchannel'){ ?>
+	<?php require_once(FILE_PATH.'admin/template/channel/channel_addchannel.html'); ?>
+<?php } ?>
+<?php if($op == 'editchannel'){ ?>
+	<?php require_once(FILE_PATH.'admin/template/channel/channel_editchannel.html'); ?>
+<?php } ?>
+<?php if($op == 'addcolumn'){ ?>
+	<?php require_once(FILE_PATH.'admin/template/channel/channel_addcolumn.html'); ?>
+<?php } ?>
+<?php if($op == 'editcolumn'){ ?>
+	<?php require_once(FILE_PATH.'admin/template/channel/channel_editcolumn.html'); ?>
+<?php } ?>

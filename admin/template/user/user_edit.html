@@ -1,0 +1,20 @@
+<div class="user_edit_body">
+	<div class="user_edit_top fw700">
+		修改用户信息&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" onclick="history.back();">返回</a>
+	</div>
+	<div class="">
+		<form method="post" action="admin.php?mod=userdeal">
+			用户名：<input type="text" name="username" class="input_text" value="<?php echo $userinfo['username'];?>" /><br /><br />
+			密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" class="input_text" />&nbsp;&nbsp;不修改密码请留空<br /><br />
+			用户组：<select name="group">
+					<?php foreach($groups as $group){ ?>
+						<option value="<?php echo $group['gid']; ?>" <?php if($userinfo['gid'] == $group['gid']){ ?>selected="selected"<?php }?> ><?php echo $group['name']; ?></option>
+					<?php } ?>
+					</select><br /><br />
+			邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="text" name="email" class="input_text" value="<?php echo $userinfo['email'];?>" /><br /><br /><br />
+			<input type="hidden" name="uid" value="<?php echo $userinfo['uid'];?>" />
+			<input type="hidden" name="pop" value="edit_user" />
+			<input type="submit" class="right" value="保存"/><br /><br />
+		</form>
+	</div>
+</div>

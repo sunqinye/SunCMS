@@ -1,0 +1,22 @@
+		<div class="page_right_title bold_font">产品详细信息</div>
+		<div class="page_right_content hidden font">
+			<div class="">
+				<div class="products_show_img left">
+					<img  src="<?php echo $product['picture1']; ?>" width="330" height="220" />
+				</div>
+				<div class="products_show_info_01 left">
+					<p>产品名称：<font color="#000"><?php echo $product['title']; ?></font></p>
+					<p>产品型号：<font color="#000"><?php echo $product['model']; ?></font></p>
+					<p>产品规格：<font color="#000"><?php echo $product['spec']; ?></font></p>
+					<p>产品价格：<font color="#000"><?php echo $product['price']; ?></font></p>
+					<p class="bold_font"></p>
+				</div>
+			</div>
+			<div class="clear"></div><br />
+			<div class="products_show_info_02">
+			<p class="bold_font">详细信息：</p>
+			<div class="products_show_info_02_main">
+				<?php echo htmlspecialchars_decode($product['introduce']); ?>
+			</div>
+			</div>
+		</div>

@@ -1,0 +1,27 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".dialog_image").click(function(){
+		var newthis = $(this);
+		$.dialog.load({url:"admin/template/dialog/dialog_imageup2.php",data:{id:$(newthis).attr("fid")}});
+	});
+});
+</script>
+<div class="user_edit_body">
+	<div class="user_edit_top fw700">
+		焦点图&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" onclick="history.back();">返回</a>
+	</div>
+	<div>
+	<form action="admin.php?mod=advertisedeal" method="post">
+		<table>
+		<?php foreach($advertises as $advertise){ ?>
+			<tr>
+				<td>标题：</td><td><input type="text" name="title<?php echo $advertise['id'];?>" class="input_text" value="<?php echo $advertise['title'];?>" style="width:150px;" /></td><td width="20"></td><td>链接：</td><td><input type="text" name="url<?php echo $advertise['id'];?>" class="input_text" value="<?php echo $advertise['url'];?>" style="width:200px;" /></td><td width="20"></td><td>图片：</td><td><input type="text" id="image<?php echo $advertise['id'];?>" name="image<?php echo $advertise['id'];?>" class="input_text" value="<?php echo $advertise['image'];?>" style="width:200px;" /></td><td><input type="button" class="dialog_image" fid="<?php echo $advertise['id'];?>" value="上传" /></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+		<?php } ?>
+		</table>
+		<input type="hidden" name="pop" value="focus" />
+		<input type="submit" class="right" value="保存"/><br /><br />
+	</form>
+	</div>
+</div>

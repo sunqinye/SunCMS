@@ -1,0 +1,38 @@
+<div class="user_main center">
+	<div class="user_left left">
+		<ul>
+			<li><a href="admin.php?mod=advertise">广告列表</a></li>
+			<li><a href="admin.php?mod=advertise&op=add">添加广告</a></li>
+			<li><a href="admin.php?mod=advertise&op=focus">焦点图</a></li>
+		</ul>
+	</div>
+	<div class="user_right left">
+	<?php if($op == 'default'){ ?>
+		<div class="user_right_top">广告列表</div>
+		<div class="user_right_list">
+			<table>
+			<tr>
+				<th>ID</th><th>标题</th><th>类型（代号）</th><th>时间</th><th>管理</th>
+			</tr>
+			<?php foreach($advertises as $advertise){ ?>
+			<tr>
+				<td><?php echo $advertise['aid']; ?></td><td><?php echo $advertise['title']; ?></td><td><?php if($advertise['type'] == '1'){ ?>文字<?php } ?><?php if($advertise['type'] == '2'){ ?>图片<?php } ?>（<?php echo $advertise['type']; ?>）</td><td><?php echo $advertise['datetime']; ?></td><td><a href="admin.php?mod=advertise&op=edit&aid=<?php echo $advertise['aid']; ?>">修改</a>&nbsp;&nbsp;<a href="javascript:;" class="delete_ad" uid="<?php echo $advertise['aid']; ?>">删除</a></td>
+			</tr>
+			<?php } ?>
+			</table>
+		</div>
+		<div class="pageshow">
+			<?php echo $pageshow; ?>
+		</div>
+	<?php } ?>
+	<?php if($op == 'edit'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/advertise/advertise_edit.html'); ?>
+	<?php } ?>
+	<?php if($op == 'add'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/advertise/advertise_add.html'); ?>
+	<?php } ?>
+	<?php if($op == 'focus'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/advertise/advertise_focus.html'); ?>
+	<?php } ?>
+	</div>
+</div>

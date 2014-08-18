@@ -1,0 +1,65 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#column_permit").change(function(){
+		$("#is_columnPermitChange").attr("value",'1');
+	});
+});
+</script>
+<div class="user_right_group_top">
+<span>用户组管理</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<?php foreach($groups as $group){ ?>
+	<a href="admin.php?mod=user&op=managegroup&gid=<?php echo $group['gid']; ?>"><?php echo $group['name']; ?></a>&nbsp;&nbsp;
+<?php } ?>
+</div>
+<div class="user_right_group_list">
+	<form method="post" action="admin.php?mod=userdeal">
+	<table>
+	<tr>
+		<td width="120px"><span>基本信息</span></td><td><input type="submit" class="right" value="保存"/></td>
+	</tr>
+	<tr>
+		<td>组ID</td><td><?php echo $groupall['gid']; ?></td>
+	</tr>
+	<tr>
+		<td>组名称</td><td><input type="text" name="name" value="<?php echo $groupall['name']; ?>" /></td>
+	</tr>
+	<tr>
+		<td><span>权限设置</span></td><td></td>
+	</tr>
+	<tr>
+		<td>允许内容管理</td><td><input type="radio" name="allowhomepagecontent" value="1" <?php if($groupall['allowhomepagecontent']=='1'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="allowhomepagecontent" value="0" <?php if($groupall['allowhomepagecontent']=='0'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;否</td></td>
+	</tr>
+	<tr>
+		<td>允许设置功能</td><td><input type="radio" name="allowset" value="1" <?php if($groupall['allowset']=='1'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="allowset" value="0" <?php if($groupall['allowset']=='0'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;否</td></td>
+	</tr>
+	<tr>
+		<td>允许频道管理</td><td><input type="radio" name="allowchannel" value="1" <?php if($groupall['allowchannel']=='1'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="allowchannel" value="0" <?php if($groupall['allowchannel']=='0'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;否</td></td>
+	</tr>
+	<tr>
+		<td>允许用户管理</td><td><input type="radio" name="allowuser" value="1" <?php if($groupall['allowuser']=='1'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="allowuser" value="0" <?php if($groupall['allowuser']=='0'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;否</td></td>
+	</tr>
+	<tr>
+		<td>允许广告管理</td><td><input type="radio" name="allowadvertise" value="1" <?php if($groupall['allowadvertise']=='1'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="allowadvertise" value="0" <?php if($groupall['allowadvertise']=='0'){ ?>checked="checked"<?php } ?> />&nbsp;&nbsp;否</td></td>
+	</tr>
+	<tr>
+		<td>栏目权限管理</td>
+		<td>
+			<select size="10" multiple="multiple" name="columns_permit[]" id="column_permit">
+				<?php foreach($channels as $channel){ ?>
+				<optgroup label="<?php echo $channel['name']; ?>">
+					<?php $columns = $db->table("column")->where("`channel`='$channel[cid]'")->selectall(); ?>
+					<?php foreach($columns as $column){ ?>
+					<option value="<?php echo $column['cid']; ?>" <?php if(in_array($column['cid'], $columns_permit)){ ?>selected="selected"<?php } ?>><?php echo $column['name']; ?></option>
+					<?php } ?>
+				</optgroup>
+				<?php } ?>
+			</select>
+			&nbsp;（按住Ctrl多选）
+		</td>
+	</tr>
+	<input type="hidden" name="is_columnPermitChange" id="is_columnPermitChange" value="" />
+	<input type="hidden" name="gid" value="<?php echo $groupall['gid']; ?>" />
+	<input type="hidden" name="pop" value="edit_group" />
+	</table>
+	</form>
+</div>

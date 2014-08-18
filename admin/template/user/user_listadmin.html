@@ -1,0 +1,16 @@
+<div class="user_right_top">管理员列表</div>
+<div class="user_right_list">
+	<table>
+	<tr>
+		<th>UID</th><th>用户名</th><th>用户组</th><th>邮箱</th><th>管理</th>
+	</tr>
+	<?php foreach($users as $user){ ?>
+	<tr>
+		<td><?php echo $user['uid']; ?></td><td><?php echo $user['username']; ?></td><td><?php echo $groups[$user['gid']]['name'];?></td><td><?php echo $user['email']; ?></td><td><a href="admin.php?mod=user&op=editadmin&uid=<?php echo $user['uid']; ?>">修改</a>&nbsp;&nbsp;<a href="javascript:;" class="delete_admin" uid="<?php echo $user['uid']; ?>">删除</a></td>
+	</tr>
+	<?php } ?>
+	</table>
+	<div class="pageshow">
+		<?php echo $pageshow; ?>
+	</div>
+</div>

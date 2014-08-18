@@ -1,0 +1,65 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	var options = {
+		success : function(result){
+			if(result != ''){
+				var picture1 = $('#picture1');
+				var picture2 = $('#picture2');
+				var picture3 = $('#picture3');
+				if($(picture1).attr("src") == 'admin/template/image/image_blank.png'){
+					$(picture1).attr("src",result);
+					$("#picture1_url").attr("value",result);
+				}else if($(picture2).attr("src") == 'admin/template/image/image_blank.png'){
+					$(picture2).attr("src",result);
+					$("#picture2_url").attr("value",result);
+				}else if($(picture3).attr("src") == 'admin/template/image/image_blank.png'){
+					$(picture3).attr("src",result);
+					$("#picture3_url").attr("value",result);
+				}
+			}
+		},
+	};
+	$('#formUpImage').submit(function(){
+		$(this).ajaxSubmit(options);
+		return false;
+	});
+});
+</script>
+<div class="module_article_right_create left">
+	<div class="module_article_right_create_top">
+		<span>编辑产品</span>
+	</div>
+	<div class="module_article_right_create_main">
+	<form id="formUpImage" action="admin.php?mod=m_productdeal" method="post" enctype="multipart/form-data">
+		图&nbsp;&nbsp;&nbsp;&nbsp;片：<input type="file" name="upfile" value="选择" /><input type="hidden" name="pop" value="upImage" /><input type="submit" value="上传" /><br /><br />
+	</form>
+	<form method="post" action="admin.php?mod=m_productdeal">
+		<div class="module_product_right_imageview">
+			<img <?php if($product['picture1'] != ''){ ?>src="<?php echo $product['picture1']?>"<?php }else{ ?>src="admin/template/image/image_blank.png"<?php } ?> id="picture1" />&nbsp;&nbsp;
+			<img <?php if($product['picture2'] != ''){ ?>src="<?php echo $product['picture2']?>"<?php }else{ ?>src="admin/template/image/image_blank.png"<?php } ?> id="picture2" />&nbsp;&nbsp;
+			<img <?php if($product['picture3'] != ''){ ?>src="<?php echo $product['picture3']?>"<?php }else{ ?>src="admin/template/image/image_blank.png"<?php } ?> id="picture3" />&nbsp;&nbsp;
+			<input type="hidden" name="picture1" id="picture1_url" value="<?php echo $product['picture1']?>" />
+			<input type="hidden" name="picture2" id="picture2_url" value="<?php echo $product['picture2']?>" />
+			<input type="hidden" name="picture3" id="picture3_url" value="<?php echo $product['picture3']?>" />
+		</div><br />
+		名&nbsp;&nbsp;&nbsp;&nbsp;称：<input type="text" class="input_text" name="title" value="<?php echo $product['title']?>"/><br /><br />
+		栏&nbsp;&nbsp;&nbsp;&nbsp;目：<span style="color:#999999;"><?php echo $column['name']?></span><br /><br />
+		型&nbsp;&nbsp;&nbsp;&nbsp;号：<input type="text" class="input_text" name="model" value="<?php echo $product['model']?>" /><br /><br />
+		规&nbsp;&nbsp;&nbsp;&nbsp;格：<input type="text" class="input_text" name="spec" value="<?php echo $product['spec']?>" /><br /><br />
+		价&nbsp;&nbsp;&nbsp;&nbsp;格：<input type="text" class="input_text" name="price" value="<?php echo $product['price']?>" /><br /><br />
+		点击数：<input type="text" class="input_text" name="clicknum" value="<?php echo $product['clicknum']?>" style="width:50px; margin-right:50px;" />
+		排序：<input type="text" class="input_text" name="order" value="<?php echo $product['order']?>" style="width:50px;" /><br /><br />
+		产品介绍：<br /><br />
+		<textarea id="ueditor" name="introduce"><?php echo $product['introduce']; ?></textarea><br />
+		<script type="text/javascript">
+			var editor = new UE.ui.Editor();
+			editor.render("ueditor");
+		</script>
+		<input type="hidden" name="id" value="<?php echo $product['id']; ?>" />
+		<input type="hidden" name="chan" value="<?php echo $chan; ?>" />
+		<input type="hidden" name="col" value="<?php echo $col; ?>" />
+		<input type="hidden" name="pop" value="edit_pro" />
+		<input type="submit" class="right cp" value="保存" /><br /><br />
+	</form>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+<div class="page_right_title bold_font"><?php echo $column['name']; ?> >> 详细内容</div>
+<div class="article_main">
+	<div class="article_main_top">
+		<?php echo $article['title'];?>
+	</div>
+	<div class="article_main_info">
+		作者：<?php echo $article['author'];?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来源：<a href="<?php echo $article['sourceurl'];?>" target="_blank"><?php echo $article['source'];?></a>
+	</div>
+	<div class="article_main_content">
+		<?php echo htmlspecialchars_decode($article['content']);?>
+	</div>
+</div>

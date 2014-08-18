@@ -1,0 +1,12 @@
+<body>
+<div class="index_top oh">
+	<ul>
+	<?php foreach ($channels as $value) { ?>
+		<a href="admin.php?chan=<?php echo $value['cid']; ?>"><li id="content"><?php echo $value['name']; ?></li></a>
+		<li id="border"></li>
+	<?php } ?>
+	</ul>
+</div>
+<div class="index_location center">
+	当前位置：<a href="admin.php">首页</a><?php if(!empty($channel['name'])){ ?> >> <a href="admin.php?chan=<?php echo $channel['cid'];?>"><?php echo $channel['name']; ?></a><?php } ?>
+</div>

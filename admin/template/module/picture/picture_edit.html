@@ -1,0 +1,33 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#dialog_image").click(function(){
+		$.dialog.load({url:"admin/template/dialog/dialog_imageup2.php"});
+	});
+});
+</script>
+<div class="module_article_right_create left">
+	<div class="module_article_right_create_top">
+		<span>编辑图片</span>
+	</div>
+	<div class="module_article_right_create_main">
+	<form method="post" action="admin.php?mod=m_picturedeal">
+		栏&nbsp;&nbsp;&nbsp;&nbsp;目：<span style="color:#999999;"><?php echo $column['name']?></span><br /><br />
+		标&nbsp;&nbsp;&nbsp;&nbsp;题：<input type="text" class="input_text" name="title" value="<?php echo $picture['title'];?>" /><br /><br />
+		图&nbsp;&nbsp;&nbsp;&nbsp;片：<input type="text" name="image" id="image" class="input_text" value="<?php echo $picture['image'];?>" /> <input type="button" id="dialog_image" value="上传" /><br /><br />
+		<div class="module_product_right_imageview">
+			<img src="<?php echo $picture['image'];?>" id="imagesrc" />
+		</div><br />
+		描述：<br /><br />
+		<textarea id="ueditor" name="description"><?php echo $picture['description'];?></textarea><br />
+		<script type="text/javascript">
+			var editor = new UE.ui.Editor();
+			editor.render("ueditor");
+		</script>
+		<input type="hidden" name="id" value="<?php echo $picture['id']; ?>" />
+		<input type="hidden" name="chan" value="<?php echo $chan; ?>" />
+		<input type="hidden" name="column" value="<?php echo $col; ?>" />
+		<input type="hidden" name="pop" value="edit" />
+		<input type="submit" class="right cp" value="保存" /><br /><br />
+	</form>
+	</div>
+</div>

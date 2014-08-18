@@ -1,0 +1,65 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".delete_art").click(function(){
+		if(confirm("确定删除吗")){
+			var newthis=$(this);
+			$.post("admin.php?mod=m_articledeal",{pop:"delete_art",id:$(newthis).attr("aid")},function(){
+				$(newthis).parent("td").parent("tr").remove();
+			});
+		}
+	});
+});
+</script>
+<div class="module_common_main center">
+	<div class="module_common_left left">
+		<div class="module_common_left_top">
+			<span>栏目列表</span>
+		</div>
+		<div class="module_common_left_main">
+			<?php adminColumnList($chan,0); ?>
+		</div>
+	</div>
+	<?php if($op == 'default'){ ?>
+	<div class="module_article_right left">
+		<div class="module_article_right_top">
+			<span><?php echo $column['name']; ?></span><?php if(!empty($is_columnPermit)){ ?><span class="fw400"><a href="admin.php?chan=<?php echo $chan; ?>&col=<?php echo $col; ?>&op=create_art">创建文章</a></span><?php } ?>
+		</div>
+		<div class="module_article_right_main">
+			<table>
+				<tr>
+					<th width="5%">Id</th>
+					<th width="35%">标题</th>
+					<th width="10%">作者</th>
+					<th width="15%">发布时间</th>
+					<th width="5%">排序</th>
+					<th width="30%">操作</th>
+				</tr>
+				<?php foreach ($m_articles as $m_article) { ?>
+				<tr>
+					<td><?php echo $m_article['id']; ?></td>
+					<td><?php echo $m_article['title']; ?></td>
+					<td><?php echo $m_article['author']; ?></td>
+					<td><?php echo $m_article['pubDatetime']; ?></td>
+					<td><?php echo $m_article['order']; ?></td>
+					<td><a href="index.php?chan=<?php echo $chan; ?>&aid=<?php echo $m_article['id']; ?>&op=article_view" target="_blank">预览</a>&nbsp;
+						<?php if(!empty($is_columnPermit)){ ?>
+						<a href="admin.php?chan=<?php echo $chan; ?>&col=<?php echo $m_article['column']; ?>&id=<?php echo $m_article['id']; ?>&op=edit_art">编辑</a>&nbsp;
+						<a href="javascript:;" class="delete_art" aid="<?php echo $m_article['id']; ?>">删除</a>
+						<?php } ?>
+					</td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+		<div class="pageshow">
+			<?php echo $pageshow; ?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($op == 'create_art'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/module/article/article_create.html'); ?>
+	<?php } ?>
+	<?php if($op == 'edit_art'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/module/article/article_edit.html'); ?>
+	<?php } ?>
+</div>

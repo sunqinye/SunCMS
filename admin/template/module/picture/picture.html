@@ -1,0 +1,53 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".delete_pic").click(function(){
+		if(confirm("确定删除吗")){
+			var newthis=$(this);
+			$.post("admin.php?mod=m_picturedeal",{pop:"delete",id:$(newthis).attr("pid")},function(){
+				$(newthis).parent("div").parent("div").remove();
+			});
+		}
+	});
+});
+</script>
+<div class="module_common_main center">
+	<div class="module_common_left left">
+		<div class="module_common_left_top">
+			<span>栏目列表</span>
+		</div>
+		<div class="module_common_left_main">
+			<?php adminColumnList($chan,0); ?>
+		</div>
+	</div>
+	<?php if($op == 'default'){ ?>
+	<div class="module_article_right left">
+		<div class="module_article_right_top">
+			<span><?php echo $column['name']; ?></span><?php if(!empty($is_columnPermit)){ ?><span class="fw400"><a href="admin.php?chan=<?php echo $chan; ?>&col=<?php echo $col; ?>&op=add">添加图片</a></span><?php } ?>
+		</div>
+		<div class="module_article_right_main">
+			<div class="module_picture_right_main">
+				<?php foreach ($m_pictures as $m_picture) { ?>
+				<div class="module_picture_right_main_div left">
+					<div class="module_picture_right_main_div_image">
+						<img src="<?php echo $m_picture['image']; ?>" width="200" height="150" />
+					</div>
+					<div class="module_picture_right_main_div_other right">
+						<a href="admin.php?chan=<?php echo $chan; ?>&col=<?php echo $m_picture['column']; ?>&id=<?php echo $m_picture['id']; ?>&op=edit">编辑</a>&nbsp;&nbsp;&nbsp;<a href="javascript:;" class="delete_pic" pid="<?php echo $m_picture['id']; ?>">删除</a>
+					</div>
+				</div>
+				<?php } ?>
+				<div class="cb"></div>
+			</div>
+		</div>
+		<div class="pageshow">
+			<?php echo $pageshow; ?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($op == 'add'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/module/picture/picture_add.html'); ?>
+	<?php } ?>
+	<?php if($op == 'edit'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/module/picture/picture_edit.html'); ?>
+	<?php } ?>
+</div>

@@ -1,0 +1,48 @@
+<div class="homepage_main center">
+	<div class="homepage_left left">
+		<div class="homepage_div">
+			<div class="homepage_div_top">
+				<span>关于SunCMS</span>
+			</div>
+			<div class="homepage_div_main">
+				SunCMS是简单易用的专业企业建站系统，系统包含多个模块，通过设置频道、栏目等用户可选择适合的模块，自定义网站功能，使网站的管理简单、快捷。<br /><br />
+				使用方式：<br /><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;1.在频道功能中选择添加频道<br /><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;2.在对用频道中添加栏目<br /><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;3.选择栏目所使用的模块<br /><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;4.在首页中进行管理<br />
+			</div>
+		</div>
+		<div class="homepage_div">
+			<div class="homepage_div_top">
+				<span>说明</span>
+			</div>
+			<div class="homepage_div_main">
+				SunCMS基于Apache License 2.0协议发布，请在协议规定下使用。
+			</div>
+		</div>
+	</div>
+	<div class="homepage_right right">
+		<div class="homepage_div">
+			<div class="homepage_div_top">
+				<span>站点统计</span>
+			</div>
+			<div class="homepage_div_main" style="padding:0;">
+				<table>
+					<tr style="background:#EFEFEF;">
+						<td>用户</td><td>频道</td><td>栏目</td><td>单页</td><td>文章</td>
+					</tr>
+					<tr style="background:#F8F8F8;">
+						<td><?php echo $userNum; ?></td><td><?php echo $channelNum; ?></td><td><?php echo $columnNum; ?></td><td><?php echo $pageNum; ?></td><td><?php echo $articleNum; ?></td>
+					</tr>
+					<tr style="background:#EFEFEF;">
+						<td>产品</td><td>留言</td><td></td><td></td><td></td>
+					</tr>
+					<tr style="background:#F8F8F8;">
+						<td><?php echo $productNum; ?></td><td><?php echo $leavewordNum; ?></td><td></td><td></td><td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

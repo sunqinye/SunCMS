@@ -1,0 +1,47 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#dialog_image").click(function(){
+		$.dialog.load({url:"admin/template/dialog/dialog_imageup.php"});
+	});
+});
+</script>
+<div class="user_edit_body">
+	<div class="user_edit_top fw700">
+		广告修改&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" onclick="history.back();">返回</a>
+	</div>
+	<div>
+	<form method="post" action="admin.php?mod=advertisedeal">
+		<table>
+			<tr>
+				<td>标题：</td><td><input type="text" name="title" class="input_text" value="<?php echo $advertise['title'];?>" /></td>
+			</tr>
+			<tr style="height:15px;"></tr>
+			<?php if($advertise['type'] == 1){ ?>
+			<tr>
+				<td>代码：</td><td><textarea name="code" rows="10" cols="42"><?php echo $advertise_code['code'];?></textarea></td>
+			</tr>
+			<?php }else if($advertise['type'] == 2){ ?>
+			<tr>
+				<td>图片：</td><td><input type="text" name="image" id="image" class="input_text" value="<?php echo $advertise_image['image'];?>" /> <input type="button" id="dialog_image" value="上传" /></td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>宽度：</td><td><input type="text" name="width" class="input_text" value="<?php echo $advertise_image['width'];?>" style="width:50px" /> px (可不填)</td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>高度：</td><td><input type="text" name="height" class="input_text" value="<?php echo $advertise_image['height'];?>" style="width:50px" /> px (可不填)</td>
+			</tr>
+			<tr style="height:20px;"></tr>
+			<tr>
+				<td>链接：</td><td><input type="text" name="url" class="input_text" value="<?php echo $advertise_image['url'];?>" /> 例如：http://www.hisuncms.com</td>
+			</tr>
+			<?php } ?>
+		</table>
+		<input type="hidden" name="aid" value="<?php echo $advertise['aid'];?>" />
+		<input type="hidden" name="type" value="<?php echo $advertise['type'];?>" />
+		<input type="hidden" name="pop" value="edit" />
+		<input type="submit" class="right" value="保存"/><br /><br />
+	</form>
+	</div>
+</div>

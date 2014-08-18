@@ -1,0 +1,64 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".delete_leave").click(function(){
+		if(confirm("确定删除吗")){
+			var newthis=$(this);
+			$.post("admin.php?mod=m_leaveworddeal",{pop:"delete_leave",id:$(newthis).attr("lid")},function(){
+				$(newthis).parent("td").parent("tr").remove();
+			});
+		}
+	});
+});
+</script>
+<div class="module_common_main center">
+	<div class="module_common_left left">
+		<div class="module_common_left_top">
+			<span>栏目列表</span>
+		</div>
+		<div class="module_common_left_main">
+			<?php adminColumnList($chan,0); ?>
+		</div>
+	</div>
+	<?php if($op == 'default'){ ?>
+	<div class="module_article_right left">
+		<div class="module_article_right_top">
+			<span><?php echo $column['name']; ?></span>
+		</div>
+		<div class="module_article_right_main">
+			<table>
+				<tr>
+					<th width="5%">Id</th>
+					<th width="15%">姓名</th>
+					<th width="15%">电话</th>
+					<th width="25%">邮箱</th>
+					<th width="25%">时间</th>
+					<th width="15%">操作</th>
+				</tr>
+				<?php foreach ($m_leavewords as $m_leaveword) { ?>
+				<tr>
+					<td><?php echo $m_leaveword['id']; ?></td>
+					<td><?php echo $m_leaveword['name']; ?></td>
+					<td><?php echo $m_leaveword['phone']; ?></td>
+					<td><?php echo $m_leaveword['email']; ?></td>
+					<td><?php echo $m_leaveword['datetime']; ?></td>
+					<td>
+						<?php if(!empty($is_columnPermit)){ ?>
+						<a href="admin.php?chan=<?php echo $chan; ?>&col=<?php echo $m_leaveword['column']?>&id=<?php echo $m_leaveword['id']; ?>&op=viewLeaveword">查看</a>&nbsp;
+						<a href="javascript:;" class="delete_leave" lid="<?php echo $m_leaveword['id']; ?>">删除</a>
+						<?php }else{ ?>
+						没有权限
+						<?php } ?>
+					</td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+		<div class="pageshow">
+			<?php echo $pageshow; ?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($op == 'viewLeaveword'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/module/leaveword/leaveword_view.html'); ?>
+	<?php } ?>
+</div>

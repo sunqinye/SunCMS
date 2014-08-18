@@ -1,0 +1,25 @@
+<div class="module_article_right_create left">
+	<div class="module_article_right_create_top">
+		<span>创建文章</span>
+	</div>
+	<div class="module_article_right_create_main">
+	<form method="post" action="admin.php?mod=m_articledeal">
+		标题：<input type="text" class="input_text" name="title" /><br /><br />
+		栏目：<span style="color:#999999;"><?php echo $column['name']?></span><br /><br />
+		作者：<input type="text" class="input_text" name="author" /><br /><br />
+		来源：<input type="text" class="input_text" name="source" /><br /><br />
+		地址：<input type="text" class="input_text" name="sourceurl" /><br /><br />
+		<textarea id="ueditor" name="content"></textarea><br />
+		<script type="text/javascript">
+			var editor = new UE.ui.Editor();
+			editor.render("ueditor");
+		</script>
+		初始点击数：<input type="text" class="input_text" name="clicknum" value="0" style="width:50px; margin-right:50px;" />
+		排序：<input type="text" class="input_text" name="order" value="0" style="width:50px;" /><br /><br />
+		<input type="hidden" name="chan" value="<?php echo $chan; ?>" />
+		<input type="hidden" name="column" value="<?php echo $col; ?>" />
+		<input type="hidden" name="pop" value="create_art" />
+		<input type="submit" class="right cp" value="提交" /><br /><br />
+	</form>
+	</div>
+</div>

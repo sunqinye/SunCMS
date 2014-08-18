@@ -1,0 +1,16 @@
+<div class="user_edit_body center" style="width:95%; margin-top:15px">
+	<div class="user_edit_top fw700">
+		修改个人信息&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" onclick="history.back();">返回</a>
+	</div>
+	<div class="">
+		<form method="post" action="admin.php?mod=userdeal">
+			用户名：<?php echo $myinfo['username'];?><br /><br />
+			密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" class="input_text" />&nbsp;&nbsp;不修改密码请留空<br /><br />
+			用户组：<?php echo $group['name'];?><br /><br />
+			邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="text" name="email" class="input_text" value="<?php echo $myinfo['email'];?>" /><br /><br /><br />
+			<input type="hidden" name="uid" value="<?php echo $myinfo['uid'];?>" />
+			<input type="hidden" name="pop" value="edit_myinfo" />
+			<input type="submit" class="right" value="保存"/><br /><br />
+		</form>
+	</div>
+</div>

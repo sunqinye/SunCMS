@@ -1,0 +1,24 @@
+<body>
+<div class="header oh">
+	<div class="header_logo left">
+		<a href="admin.php"><img src="admin/template/image/logo.png" alt="" /></a>
+	</div>
+	<div class="header_nav left">
+		<ul>
+			<a href="admin.php"><li class="<?php if($mod == 'index'){ ?>on<?php } ?>">首页</li></a>
+			<a href="admin.php?mod=set"><li class="<?php if($mod == 'set'){ ?>on<?php } ?>">设置</li></a>
+			<a href="admin.php?mod=channel"><li class="<?php if($mod == 'channel'){ ?>on<?php } ?>">频道</li></a>
+			<a href="admin.php?mod=user"><li class="<?php if($mod == 'user'){ ?>on<?php } ?>">用户</li></a>
+			<a href="admin.php?mod=advertise"><li class="<?php if($mod == 'advertise'){ ?>on<?php } ?>">广告</li></a>
+		</ul>
+	</div>
+	<div class="header_misc">
+		<a href="admin.php?mod=myinfo"><?php echo $adminUsername;?></a>
+		<?php echo $group['name'];?>
+		<a href="index.php" target="_blank">站点首页</a>
+		<a href="admin.php?mod=logout">退出</a>
+	</div>
+</div>
+<?php if($mod != 'index'){ ?>
+<div class="header_line"></div>
+<?php } ?>

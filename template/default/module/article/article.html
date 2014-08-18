@@ -1,0 +1,33 @@
+	<div class="page_left left">
+		<div class="page_left_top border">
+			<div class="page_left_top_title bold_font"></div>
+			<div class="page_left_top_content">
+				<ul>
+					<?php columnList($chan,0); ?>
+				</ul>
+			</div>
+		</div>
+		<div class="page_left_lianxi">
+			<div class="page_left_lianxi_title bold_font"></div>
+			<div class="page_left_lianxi_content">
+			</div>
+		</div>
+	</div>
+	<div class="page_right left border">
+	<?php if($op == 'default'){ ?>
+		<div class="page_right_title bold_font"><?php echo $column['name']; ?></div>
+		<div class="page_right_content hidden font">
+			<div class="page_right_content_main">
+				<?php foreach($articles as $article){ ?>
+				<li><a href="index.php?chan=<?php echo $chan;?>&aid=<?php echo $article['id'];?>&op=article_view"><?php echo $article['title']; ?></a><span class="right"><?php echo $article['pubDatetime']; ?></span></li>
+				<?php } ?>
+			</div>
+		</div>
+		<div class="page_right_page">
+			<?php echo $showPage; ?>
+		</div>
+	<?php } ?>
+	<?php if($op == 'article_view'){ ?>
+	<?php require_once(FILE_PATH.'template/default/module/article/article_view.html'); ?>
+	<?php } ?>
+	</div>

@@ -1,0 +1,31 @@
+<div class="module_common_main center">
+	<div class="module_common_left left">
+		<div class="module_common_left_top">
+			<span>栏目列表</span>
+		</div>
+		<div class="module_common_left_main">
+			<?php adminColumnList($chan,0); ?>
+		</div>
+	</div>
+	<div class="module_page_right left">
+		<div class="module_page_right_top">
+			<span><?php echo $column['name']; ?></span>
+		</div>
+		<form method="post" action="admin.php?mod=m_pagedeal">
+		<div class="module_page_right_editor center">
+			<textarea id="ueditor" name="content"><?php echo $m_page['content']; ?></textarea>
+			<script type="text/javascript">
+				UE.getEditor('ueditor', {
+					<?php if(empty($is_columnPermit)){ ?>readonly: true,<?php } ?>
+				});
+			</script>
+			
+			<input type="hidden" name="id" value="<?php echo $m_page['id'];?>"/>
+			<input type="hidden" name="pop" value="savepage"/>
+		</div>
+		<div class="module_page_right_bottom">
+			<?php if(!empty($is_columnPermit)){ ?><input type="submit" class="right cp" value="保存" /><?php } ?>
+		</div>
+		</form>
+	</div>
+</div>

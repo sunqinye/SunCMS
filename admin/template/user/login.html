@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>登录管理中心</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<script type="text/javascript" src="source/javascript/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="admin/template/css/common.suncms.admin.css">
+<style type="text/css">
+.login_body{color:#666666;}
+.login_body a{color:#2366A8;}
+.login_main{width:560px; height:180px; margin-top:110px;}
+.login_left{width:290px; height:120px; background:url("admin/template/image/bg_login.gif") no-repeat right; padding-top:15px; padding-right:30px;}
+.login_left_logo{margin:15px 0;}
+.login_left_introduce{line-height:20px;}
+.login_right{padding-top:10px;}
+.login_right table tr{height:38px;}
+.login_right button{width:40px; height:25px; background:#dddddd; margin-top:12px}
+.login_copyright{width:280px; height:30px; margin-top:220px; text-align:center;}
+</style>
+</head>
+<body>
+<div class="login_body">
+	<div class="login_main center">
+		<div class="login_left left">
+			<div class="login_left_logo">
+				<img src="admin/template/image/login_logo.png" alt="SunCMS管理中心" />
+			</div>
+			<div class="login_left_introduce">
+				SunCMS是简单易用的专业企业建站系统，遵循Apache License 2.0协议，请在协议下使用。
+			</div>
+		</div>
+		<div class="login_right fs14 fw700 left">
+			<form method="post" action="admin.php?mod=login">
+			<table>
+				<tr>
+					<td>用户名：</td>
+					<td colspan="2"><input type="text" name="username" class="input_text" style="width:160px; height:20px;" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>密&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
+					<td colspan="2"><input type="password" name="password" class="input_text" style="width:160px; height:20px;" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>验证码：</td>
+					<td><input type="text" name="icode" class="input_text" style="width:68px; height:20px;" /></td>
+					<td><img src="source/other/icode.php?loca=login" class="cp right" id="login_icode" width="80px" height="30px" onclick="this.src='source/other/icode.php?loca=login&'+Math.random();" /></td>
+				</tr>
+				<tr>
+				<td><input type="hidden" name="pop" value="login" /></td><td></td><td><button type="submit" class="cb cp right">登录</button></td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+	<div class="login_copyright center">
+		Powered by Sun Qinye
+	</div>
+</div>
+</body>
+</html>

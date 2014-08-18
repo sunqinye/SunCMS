@@ -1,0 +1,6 @@
+.header{height:120px;}
+.header_top{height:90px;}
+.header_nav{height:30px; background:#339966}
+.header_nav li{float:left; margin-right:10px;}
+
+.index_ad{height:200px; border:1px solid #dddddd;}

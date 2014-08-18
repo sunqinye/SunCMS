@@ -1,0 +1,61 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$("input[name=coltype]").click(function(){
+		if($(this).val()=='1'){
+			$(".column_url").attr("style","display:none;");
+			$(".column_module").attr("style","");
+		}else{
+			$(".column_url").attr("style","");
+			$(".column_module").attr("style","display:none;");
+		}
+	});
+});
+</script>
+<div class="channel_body center">
+	<form method="post" action="admin.php?mod=channeldeal">
+	<div class="channel_top">
+		<span class="fw700 left">编辑栏目&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" onclick="history.back();">返回</a></span><span class="right"><input type="submit" value="保存" /></span>
+	</div>
+	<div class="channel_main">
+		<div>
+			<table class="center">
+			<tr>
+				<td width="8%">栏目类型：</td>
+				<td width="92%"><input type="radio" name="coltype" value="1" <?php if($column['coltype']=='1'){ ?>checked="checked"<?php } ?> /> 系统内链&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="coltype" value="2" <?php if($column['coltype']=='2'){ ?>checked="checked"<?php } ?> /> 系统外链</td>
+			</tr>
+			<tr>
+				<td width="8%">栏目名称：</td>
+				<td width="92%"><input type="text" name="name" class="input_text" value="<?php echo $column['name']?>" /></td>
+			</tr>
+			<tr class="column_url" style="<?php if($column['coltype']=='1'){?>display:none;<?php } ?>">
+				<td width="8%">链接地址：</td>
+				<td width="92%"><input type="text" name="url" class="input_text" value="<?php echo $column['url']; ?>" />&nbsp;&nbsp;例如：http://www.hisuncms.com</td>
+			</tr>
+			<tr class="column_url" style="<?php if($column['coltype']=='1'){?>display:none;<?php } ?>">
+				<td width="8%">跳转方式：</td>
+				<td width="92%"><input type="radio" name="target" value="1" <?php if($column['target']=='1'){ ?>checked="checked"<?php } ?> /> 本页 <input type="radio" name="target" value="2" <?php if($column['target']=='2'){ ?>checked="checked"<?php } ?> /> 新页</td>
+			</tr>
+			<tr>
+				<td width="8%">栏目设置：</td>
+				<td width="92%"><input type="radio" name="hidden" value="0" <?php if($column['hidden']=='0'){ ?>checked="checked"<?php } ?> /> 显示 <input type="radio" name="hidden" value="1" <?php if($column['hidden']=='1'){ ?>checked="checked"<?php } ?> /> 隐藏</td>
+			</tr>
+			<tr>
+				<td width="8%">排序：</td>
+				<td width="92%"><input type="text" name="order" class="input_text" style="width:30px" value="<?php echo $column['order']?>" /></td>
+			</tr>
+			<tr class="column_module" style="<?php if($column['coltype']!='1'){?>display:none;<?php } ?>">
+				<td width="8%">模块：</td>
+				<td width="92%">
+				<?php foreach($modules as $module){ ?>
+					<input type="radio" name="type" value="<?php echo $module['type']; ?>" <?php if($module['type'] == $column['type']){ ?>checked="checked"<?php } ?> /> <?php echo $module['name']; ?>&nbsp;&nbsp;&nbsp;&nbsp;
+				<?php } ?>
+				</td>
+			</tr>
+			</table>
+		</div>
+	</div>
+	<input type="hidden" name="cid" value="<?php echo $column['cid']; ?>" />
+	<input type="hidden" name="channel" value="<?php echo $_GET['chan']; ?>" />
+	<input type="hidden" name="pop" value="editcolumn" />
+	</form>
+</div>

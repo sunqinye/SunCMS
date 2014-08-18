@@ -1,0 +1,12 @@
+#
+# robots.txt for SunCMS
+#
+
+User-agent: *
+
+Disallow: /admin/
+Disallow: /config/
+Disallow: /extend/
+Disallow: /install/
+Disallow: /source/
+Disallow: /admin.php

@@ -1,0 +1,114 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".set_top_div").click(function(){
+		var newthis = $(this);
+		$(".set_top_div").removeClass("set_top_on");
+		$(newthis).addClass("set_top_on");
+		$(".set_main_div").attr("style","display:none;");
+		var name = $(newthis).attr("id");
+		switch(name){
+			case 'set_top_website':
+				$("#set_main_website").attr("style","");
+				break;
+			case 'set_top_information':
+				$("#set_main_information").attr("style","");
+				break;
+			case 'set_top_function':
+				$("#set_main_function").attr("style","");
+				break;
+			default :
+				break;
+		}
+	});
+	$("input[name=switch]").click(function(){
+		if($(this).val()=='1'){
+			$("#closereason").attr("style","display:none;");
+		}else{
+			$("#closereason").attr("style","");
+		}
+	});
+});
+</script>
+<form method="post" action="admin.php?mod=setdeal">
+<div class="set_top center">
+	<div class="set_top_div set_top_on left" id="set_top_website">
+		站点设置
+	</div>
+	<div class="set_top_div left" id="set_top_information">
+		信息设置
+	</div>
+	<div class="set_top_div left" id="set_top_function">
+		功能设置
+	</div>
+	<span class="right"><input type="submit" value="保存设置" /></span>
+</div>
+<div class="set_main center">
+	<div class="center">
+		<div class="set_main_div" id="set_main_website">
+			<table>
+				<tr>
+					<td width="20%" height="50px">网站名称：</td>
+					<td><input type="text" name="sitename" value="<?php echo $website['sitename']; ?>" class="input_text" /></td>
+				</tr>
+				<tr>
+					<td width="20%" height="50px">网站地址：</td>
+					<td><input type="text" name="url" value="<?php echo $website['url']; ?>" class="input_text" /></td>
+				</tr>
+				<tr>
+					<td height="50px">网站标题：</td>
+					<td><input type="text" name="title" value="<?php echo $website['title']; ?>" class="input_text" /></td>
+				</tr>
+				<tr>
+					<td height="140px">站点关键词：</td>
+					<td><textarea name="keywords"><?php echo $website['keywords']; ?></textarea></td>
+				</tr>
+				<tr>
+					<td height="140px">站点摘要：</td>
+					<td><textarea name="description"><?php echo $website['description']; ?></textarea></td>
+				</tr>
+				<tr>
+					<td width="20%" height="50px">网站开关：</td>
+					<td><input type="radio" name="switch" value="1" <?php if($website['switch'] == '1'){ ?>checked="checked"<?php } ?> /> 开启 &nbsp; <input type="radio" name="switch" value="0" <?php if($website['switch'] == '0'){ ?>checked="checked"<?php } ?> /> 关闭</td>
+				</tr>
+				<tr id="closereason" <?php if($website['switch'] == '1'){ ?>style="display:none;"<?php } ?>>
+					<td height="140px">关闭原因：</td>
+					<td><textarea name="closereason"><?php echo $website['closereason']; ?></textarea></td>
+				</tr>
+			</table>
+		</div>
+		<div class="set_main_div" id="set_main_information" style="display:none;">
+			<table>
+				<tr>
+					<td width="20%" height="50px">联系电话：</td>
+					<td><input type="text" name="phone" value="<?php echo $website['phone']; ?>" class="input_text" /></td>
+				</tr>
+				<tr>
+					<td width="20%" height="50px">电子邮箱：</td>
+					<td><input type="text" name="email" value="<?php echo $website['email']; ?>" class="input_text" /></td>
+				</tr>
+				<tr>
+					<td width="20%" height="50px">邮政编码：</td>
+					<td><input type="text" name="zipcode" value="<?php echo $website['zipcode']; ?>" class="input_text" /></td>
+				</tr>
+				<tr>
+					<td width="20%" height="50px">通讯地址：</td>
+					<td><input type="text" name="address" value="<?php echo $website['address']; ?>" class="input_text" /></td>
+				</tr>
+				<tr>
+					<td height="50px">备案信息：</td>
+					<td><input type="text" name="beian" value="<?php echo $website['beian']; ?>" class="input_text" /></td>
+				</tr>
+			</table>
+		</div>
+		<div class="set_main_div" id="set_main_function" style="display:none;">
+			<table>
+				<tr>
+					<td width="20%" height="50px">是否允许评论：</td>
+					<td><input type="radio" name="is_comment" value="1" <?php if($website['is_comment'] == '1'){ ?>checked="checked"<?php } ?> /> 是 &nbsp; <input type="radio" name="is_comment" value="0" <?php if($website['is_comment'] == '0'){ ?>checked="checked"<?php } ?> /> 否</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="pop" value="save" />
+</form>

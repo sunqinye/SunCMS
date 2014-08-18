@@ -1,0 +1,19 @@
+	<div class="page_left left">
+		<div class="page_left_top border">
+			<div class="page_left_top_title bold_font"></div>
+			<div class="page_left_top_content">
+				<ul>
+					<?php columnList($chan,0); ?>
+				</ul>
+			</div>
+		</div>
+		<div class="page_left_lianxi">
+			
+		</div>
+	</div>
+	<div class="page_right left border">
+		<div class="page_right_title bold_font"><?php echo $column['name']; ?></div>
+		<div class="page_right_content hidden font">
+		<?php echo htmlspecialchars_decode($m_page['content']); ?>
+		</div>
+	</div>

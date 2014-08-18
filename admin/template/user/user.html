@@ -1,0 +1,73 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".delete_user").click(function(){
+		if(confirm("确定删除吗")){
+			var newthis=$(this);
+			$.post("admin.php?mod=userdeal",{pop:"delete_user",uid:$(newthis).attr("uid")},function(){
+				$(newthis).parent("td").parent("tr").remove();
+			});
+		}
+	});
+	$(".delete_admin").click(function(){
+		if(confirm("确定删除吗")){
+			var newthis=$(this);
+			$.post("admin.php?mod=userdeal",{pop:"delete_admin",uid:$(newthis).attr("uid")},function(){
+				$(newthis).parent("td").parent("tr").remove();
+			});
+		}
+	});
+});
+</script>
+<div class="user_main center">
+	<div class="user_left left">
+		<ul>
+		<li><a href="admin.php?mod=user">用户列表</a></li>
+		<li><a href="admin.php?mod=user&op=adduser">添加用户</a></li>
+		<li><a href="admin.php?mod=user&op=listadmin">管理员列表</a></li>
+		<li><a href="admin.php?mod=user&op=addadmin">添加管理员</a></li>
+		<li><a href="admin.php?mod=user&op=managegroup">管理用户组</a></li>
+		<li><a href="admin.php?mod=user&op=addgroup">添加用户组</a></li>
+		</ul>
+	</div>
+	<div class="user_right left">
+	<?php if($op == 'default'){ ?>
+		<div class="user_right_top">用户列表</div>
+		<div class="user_right_list">
+			<table>
+			<tr>
+				<th>UID</th><th>用户名</th><th>用户组</th><th>邮箱</th><th>管理</th>
+			</tr>
+			<?php foreach($users as $user){ ?>
+			<tr>
+				<td><?php echo $user['uid']; ?></td><td><?php echo $user['username']; ?></td><td><?php echo $groups[$user['gid']]['name'];?></td><td><?php echo $user['email']; ?></td><td><a href="admin.php?mod=user&op=edit&uid=<?php echo $user['uid']; ?>">修改</a>&nbsp;&nbsp;<a href="javascript:;" class="delete_user" uid="<?php echo $user['uid']; ?>">删除</a></td>
+			</tr>
+			<?php } ?>
+			</table>
+			<div class="pageshow">
+				<?php echo $pageshow; ?>
+			</div>
+		</div>
+	<?php } ?>
+	<?php if($op == 'edit'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/user/user_edit.html'); ?>
+	<?php } ?>
+	<?php if($op == 'editadmin'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/user/user_editadmin.html'); ?>
+	<?php } ?>
+	<?php if($op == 'adduser'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/user/user_add.html'); ?>
+	<?php } ?>
+	<?php if($op == 'listadmin'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/user/user_listadmin.html'); ?>
+	<?php } ?>
+	<?php if($op == 'addadmin'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/user/user_addadmin.html'); ?>
+	<?php } ?>
+	<?php if($op == 'managegroup'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/user/user_managegroup.html'); ?>
+	<?php } ?>
+	<?php if($op == 'addgroup'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/user/user_addgroup.html'); ?>
+	<?php } ?>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".delete_pro").click(function(){
+		if(confirm("确定删除吗")){
+			var newthis=$(this);
+			$.post("admin.php?mod=m_productdeal",{pop:"delete_pro",id:$(newthis).attr("pid")},function(){
+				$(newthis).parent("td").parent("tr").remove();
+			});
+		}
+	});
+});
+</script>
+<div class="module_common_main center">
+	<div class="module_common_left left">
+		<div class="module_common_left_top">
+			<span>栏目列表</span>
+		</div>
+		<div class="module_common_left_main">
+			<?php adminColumnList($chan,0); ?>
+		</div>
+	</div>
+	<?php if($op == 'default'){ ?>
+	<div class="module_article_right left">
+		<div class="module_article_right_top">
+			<span><?php echo $column['name']; ?></span><?php if(!empty($is_columnPermit)){ ?><span class="fw400"><a href="admin.php?chan=<?php echo $chan; ?>&col=<?php echo $col; ?>&op=add_pro">添加产品</a></span><?php } ?>
+		</div>
+		<div class="module_article_right_main">
+			<table>
+				<tr>
+					<th width="5%">Id</th>
+					<th width="35%">产品名称</th>
+					<th width="15%">型号</th>
+					<th width="15%">发布时间</th>
+					<th width="5%">排序</th>
+					<th width="25%">操作</th>
+				</tr>
+				<?php foreach ($m_products as $m_product) { ?>
+				<tr>
+					<td><?php echo $m_product['id']; ?></td>
+					<td><?php echo $m_product['title']; ?></td>
+					<td><?php echo $m_product['model']; ?></td>
+					<td><?php echo $m_product['datetime']; ?></td>
+					<td><?php echo $m_product['order']; ?></td>
+					<td><a href="index.php?chan=<?php echo $chan; ?>&op=product_view&pid=<?php echo $m_product['id']; ?>" target="_blank">预览</a>
+						<?php if(!empty($is_columnPermit)){ ?>
+						<a href="admin.php?chan=<?php echo $chan; ?>&col=<?php echo $m_product['column']; ?>&id=<?php echo $m_product['id']; ?>&op=edit_pro">编辑</a>
+						<a href="javascript:;" class="delete_pro" pid="<?php echo $m_product['id']; ?>">删除</a>
+						<?php } ?>
+					</td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+		<div class="pageshow">
+			<?php echo $pageshow; ?>
+		</div>
+	</div>
+	<?php } ?>
+	<?php if($op == 'add_pro'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/module/product/product_add.html'); ?>
+	<?php } ?>
+	<?php if($op == 'edit_pro'){ ?>
+		<?php require_once(FILE_PATH.'admin/template/module/product/product_edit.html'); ?>
+	<?php } ?>
+</div>

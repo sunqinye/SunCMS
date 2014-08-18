@@ -1,0 +1,42 @@
+	<div class="page_left left">
+		<div class="page_left_top border">
+			<div class="page_left_top_title bold_font"></div>
+			<div class="page_left_top_content">
+				<ul>
+					<?php columnList($chan,0); ?>
+				</ul>
+			</div>
+		</div>
+		<div class="page_left_lianxi">
+			<div class="page_left_lianxi_title bold_font"></div>
+			<div class="page_left_lianxi_content">
+			</div>
+		</div>
+	</div>
+	<div class="page_right left border">
+	<?php if($op == 'default'){ ?>
+		<div class="page_right_title bold_font">产品信息 >> <?php echo $column['name']; ?></div>
+		<div class="page_right_content hidden font">
+			<?php foreach($products as $product){ ?>
+			<div class="product_info">
+				<div class="product_img left">
+					<img src="<?php echo $product['picture1']; ?>" width="180" height="120" />
+				</div>
+				<div class="product_info_right left">
+					<p>产品名称：<font color="#000"><?php echo $product['title']; ?></font></p>
+					<p>产品型号：<font color="#000"><?php echo $product['model']; ?></font></p>
+					<p>产品规格：<font color="#000"><?php echo $product['spec']; ?></font></p>
+					<p>产品价格：<font color="#000"><?php echo $product['price']; ?></font></p>
+					<div class="more"><a href="index.php?chan=<?php echo $chan; ?>&op=product_view&pid=<?php echo $product['id']; ?>">详细>></a></div>
+				</div>
+			</div>
+			<?php } ?>
+		</div>
+		<div class="page_right_page">
+			<?php echo $showPage; ?>
+		</div>
+	<?php } ?>
+	<?php if($op == 'product_view'){ ?>
+		<?php require_once(FILE_PATH.'template/default/module/product/product_view.html'); ?>
+	<?php } ?>
+	</div>

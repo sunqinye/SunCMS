@@ -1,0 +1,50 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$("input[name=type]").click(function(){
+		if($(this).val()=='1'){
+			$(".channel_main_url").attr("style","display:none;");
+		}else{
+			$(".channel_main_url").attr("style","");
+		}
+	});
+});
+</script>
+<div class="channel_body center">
+	<form method="post" action="admin.php?mod=channeldeal">
+	<div class="channel_top">
+		<span class="fw700 left">编辑频道&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" onclick="history.back();">返回</a></span><span class="right"><input type="submit" value="保存" /></span>
+	</div>
+	<div class="channel_main">
+		<div>
+			<table class="center">
+			<tr>
+				<td width="8%">频道类型：</td>
+				<td width="92%"><input type="radio" name="type" value="1" <?php if($channel['type']=='1'){ ?>checked="checked"<?php } ?> /> 系统内链&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="type" value="2" <?php if($channel['type']=='2'){ ?>checked="checked"<?php } ?> /> 系统外链</td>
+			</tr>
+			<tr>
+				<td width="8%">频道名称：</td>
+				<td width="92%"><input type="text" name="name" class="input_text" value="<?php echo $channel['name']; ?>" /></td>
+			</tr>
+			<tr class="channel_main_url" style="<?php if($channel['type']=='1'){?>display:none;<?php } ?>">
+				<td width="8%">链接地址：</td>
+				<td width="92%"><input type="text" name="url" class="input_text" value="<?php echo $channel['url']; ?>" />&nbsp;&nbsp;例如：http://www.hisuncms.com</td>
+			</tr>
+			<tr class="channel_main_url" style="<?php if($channel['type']=='1'){?>display:none;<?php } ?>">
+				<td width="8%">跳转方式：</td>
+				<td width="92%"><input type="radio" name="target" value="1" <?php if($channel['target']=='1'){ ?>checked="checked"<?php } ?> /> 本页 <input type="radio" name="target" value="2" <?php if($channel['target']=='2'){ ?>checked="checked"<?php } ?> /> 新页</td>
+			</tr>
+			<tr>
+				<td width="8%">频道设置：</td>
+				<td width="92%"><input type="radio" name="hidden" value="0" <?php if($channel['hidden']=='0'){ ?>checked="checked"<?php } ?> /> 显示 <input type="radio" name="hidden" value="1" <?php if($channel['hidden']=='1'){ ?>checked="checked"<?php } ?> /> 隐藏</td>
+			</tr>
+			<tr>
+				<td width="8%">排序：</td>
+				<td width="92%"><input type="text" name="order" class="input_text" style="width:30px" value="<?php echo $channel['order']; ?>" /></td>
+			</tr>
+			</table>
+		</div>
+	</div>
+	<input type="hidden" name="cid" value="<?php echo $channel['cid']?>" />
+	<input type="hidden" name="pop" value="editchannel" />
+	</form>
+</div>

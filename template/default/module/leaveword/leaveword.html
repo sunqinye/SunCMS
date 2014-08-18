@@ -1,0 +1,31 @@
+	<div class="page_left left">
+		<div class="page_left_top border">
+			<div class="page_left_top_title bold_font"></div>
+			<div class="page_left_top_content">
+				<ul>
+					<?php columnList($chan,0); ?>
+				</ul>
+			</div>
+		</div>
+		<div class="page_left_lianxi">
+			<div class="page_left_lianxi_title bold_font"></div>
+			<div class="page_left_lianxi_content">
+			</div>
+		</div>
+	</div>
+	<div class="page_right left border">
+		<div class="page_right_title bold_font"><?php echo $column['name']; ?></div>
+		<div class="page_right_content hidden font">
+			<form method="post" action="index.php?mod=leaveworddeal">
+				<li><span>客户姓名</span><input class="s_input" name="name"/></li>
+				<li><span>电&nbsp;&nbsp;话</span><input class="s_input"name="phone"/></li>
+				<li><span>邮&nbsp;&nbsp;箱</span><input class="s_input"name="email"/></li>
+				<li><span>公司姓名</span><input class="s_input" name="company"/></li>
+				<li><span>留&nbsp;&nbsp;言</span><textarea name="content" rows="4" cols="25" class="input_text" style="resize:none;"></textarea></li>
+				<input type="hidden" name="chan" value="<?php echo $chan; ?>" />
+				<input type="hidden" name="col" value="<?php echo $col; ?>" />
+				<input type="hidden" name="pop" value="add_leaveword" />
+				<input class="sub_button" type="submit" value="提交" align="right"/>
+			</form><br />
+		</div>
+	</div>
